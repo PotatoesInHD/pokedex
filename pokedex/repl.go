@@ -1,7 +1,8 @@
 package main
+import "strings"
 
 func cleanInput(text string) []string {
-
-
-	return []string{}
+	cleanSlice := []string{}
+	cleanSlice = strings.Fields(strings.ToLower(text))
+	return  cleanSlice
 }
