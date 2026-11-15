@@ -17,14 +17,17 @@ type config struct {
 
 func startRepl(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
+	if err := scanner.Err(); err != nil {
+		fmt.Printf("Invalid input: %s", err)
+	}
+
 	for {
 		fmt.Printf("Pokedex > ")
 		scanner.Scan()
 		result := cleanInput(scanner.Text())
 		if len(result) != 0 {
 			if command, ok := cfg.commands[result[0]]; ok {
-				err := command.callback(cfg)
-				if err != nil {
+				if err := command.callback(cfg); err != nil {
 					fmt.Println(err)
 				}
 			} else {
