@@ -2,5 +2,7 @@ package main
 //import "fmt"
 
 func main() {
-	startRepl()
+	commands := getCommands()
+	cfg := &config{commands: commands}
+	startRepl(cfg)
 }

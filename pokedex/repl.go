@@ -8,24 +8,28 @@ import "fmt"
 type cliCommand struct {
 	name string
 	description string
-	callback func() error
+	callback func(cfg *config) error
 }
 
+type config struct {
+	commands map[string]cliCommand
+}
 
-func startRepl() {
-	commands := getCommands()
+func startRepl(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Printf("Pokedex > ")
 		scanner.Scan()
 		result := cleanInput(scanner.Text())
-		if command, ok := commands[result[0]]; ok {
-			err := command.callback()
-			if err != nil {
-				fmt.Println(err)
+		if len(result) != 0 {
+			if command, ok := cfg.commands[result[0]]; ok {
+				err := command.callback(cfg)
+				if err != nil {
+					fmt.Println(err)
+				}
+			} else {
+				fmt.Println("Unknown command")
 			}
-		} else {
-			fmt.Println("Unknown command")
 		}
 	}
 }
