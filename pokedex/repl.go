@@ -1,8 +1,12 @@
 package main
-import "strings"
-import "os"
-import "bufio"
-import "fmt"
+
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
 
 type cliCommand struct {
@@ -13,6 +17,8 @@ type cliCommand struct {
 
 type config struct {
 	commands map[string]cliCommand
+	nextLocUrl *string
+	prevLocUrl *string
 }
 
 func startRepl(cfg *config) {
@@ -49,6 +55,16 @@ func getCommands() map[string]cliCommand {
 			name: "help",
 			description: "Displays a help message",
 			callback: commandHelp,
+		},
+		"map": {
+			name: "map",
+			description: "Displays next 20 locations",
+			callback: commandMap,
+		},
+		"mapb": {
+			name: "mapb",
+			description: "Displays previous 20 locations",
+			callback: commandMapb,
 		},
 	}
 	return commands
