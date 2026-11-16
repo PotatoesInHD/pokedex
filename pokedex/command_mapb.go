@@ -9,12 +9,14 @@ func commandMapb(cfg *config) error {
 		return nil
 	}
 	areaRes, err := pokeapi.GetAreas(*cfg.prevLocUrl)
+	if err != nil {
+		fmt.Printf("Error after GetAreas in commandMapb: %v\n", err)
+		return err
+	}
 	cfg.nextLocUrl = areaRes.Next
 	cfg.prevLocUrl = areaRes.Prev
-	if err != nil {
-		fmt.Printf("Error after get areas: %v \n",err)
-	}
-	for i := 0; i < len(areaRes.Results); i++{
+
+	for i := 0; i < len(areaRes.Results); i++ {
 		fmt.Println(areaRes.Results[i].Name)
 	}
 	return nil

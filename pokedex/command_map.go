@@ -8,11 +8,12 @@ func commandMap(cfg *config) error {
 		url = *cfg.nextLocUrl
 	}
 	areaRes, err := pokeapi.GetAreas(url)
+	if err != nil {
+		fmt.Printf("Error GetAreas in commandMap: %v\n", err)
+		return err
+	}
 	cfg.nextLocUrl = areaRes.Next
 	cfg.prevLocUrl = areaRes.Prev
-	if err != nil {
-		fmt.Printf("Error after get areas: %v \n",err)
-	}
 	for i := 0; i < len(areaRes.Results); i++{
 		fmt.Println(areaRes.Results[i].Name)
 	}

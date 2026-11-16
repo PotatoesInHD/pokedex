@@ -24,7 +24,7 @@ type config struct {
 func startRepl(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 	if err := scanner.Err(); err != nil {
-		fmt.Printf("Invalid input: %s", err)
+		fmt.Printf("Invalid input: %v", err)
 	}
 
 	for {
@@ -34,7 +34,7 @@ func startRepl(cfg *config) {
 		if len(result) != 0 {
 			if command, ok := cfg.commands[result[0]]; ok {
 				if err := command.callback(cfg); err != nil {
-					fmt.Println(err)
+					fmt.Printf("Error in startRepl: %v", err)
 				}
 			} else {
 				fmt.Println("Unknown command")
