@@ -1,15 +1,19 @@
 package main
 import "fmt"
 import "strings"
+import "sort"
 
 func commandHelp(cfg *config) error {
-	//order changes everytime. maybe sweeten later by putting
-	// into a slice, sorting and then looking up/printing
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:\n")
-	for _, command := range cfg.commands {
-		fmt.Printf("%s - %s\n", command.name, command.description)
+	commandNames := []string{}
+	for name := range cfg.commands {
+		commandNames = append(commandNames, name)
+		}
+	sort.Strings(commandNames)
+	for _, commandName := range commandNames {
+		fmt.Printf("%s - %s\n", commandName, cfg.commands[commandName].description)
 	}
 	fmt.Println(strings.Repeat("-", 30))
 	return nil
