@@ -2,6 +2,7 @@ package main
 import "github.com/PotatoesInHD/pokedex/internal/pokeapi"
 import "fmt"
 
+
 func main() {
 	areaRes, err := pokeapi.GetAreas("")
 	if err != nil {

@@ -6,7 +6,7 @@ import "sort"
 func commandHelp(cfg *config) error {
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println("Welcome to the Pokedex!")
-	fmt.Println("Usage:\n")
+	fmt.Print("Usage:\n\n")
 	commandNames := []string{}
 	for name := range cfg.commands {
 		commandNames = append(commandNames, name)

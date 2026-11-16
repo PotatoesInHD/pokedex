@@ -26,7 +26,6 @@ func startRepl(cfg *config) {
 	if err := scanner.Err(); err != nil {
 		fmt.Printf("Invalid input: %v", err)
 	}
-
 	for {
 		fmt.Printf("Pokedex > ")
 		scanner.Scan()
