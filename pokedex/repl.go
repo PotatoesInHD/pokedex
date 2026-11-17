@@ -10,16 +10,16 @@ import (
 
 
 type cliCommand struct {
-	name string
+	name 		string
 	description string
-	callback func(cfg *config) error
+	callback 	func(cfg *config) error
 }
 
 type config struct {
-	commands map[string]cliCommand
-	nextLocUrl *string
-	prevLocUrl *string
-	cache 		*pokecache.Cache
+	commands 	map[string]cliCommand
+	nextLocUrl	*string
+	prevLocUrl	*string
+	cachePtr 	*pokecache.Cache
 }
 
 

@@ -21,9 +21,6 @@ type AreaResponse struct {
 
 
 func GetAreas(url string, cache *pokecache.Cache) (AreaResponse, error) {
-	if url == "" {
-		url = "https://pokeapi.co/api/v2/location-area/"
-	}
 	//checks to see if cache exists. if so unmarshal if not do a new http request
 	if bodyCache, ok := cache.GetCache(url); ok {
 		areas := AreaResponse{}

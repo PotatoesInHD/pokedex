@@ -8,6 +8,6 @@ import (
 func main() {
 	cache := pokecache.NewCache(5 * time.Minute)
 	commands := getCommands()
-	cfg := &config{commands: commands, nextLocUrl: nil, prevLocUrl: nil, cache: cache}
+	cfg := &config{commands: commands, cachePtr: cache}
 	startRepl(cfg)
 }

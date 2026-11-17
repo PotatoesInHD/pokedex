@@ -5,11 +5,11 @@ import "fmt"
 
 
 func commandMap(cfg *config) error {
-	url := ""
+	url := "https://pokeapi.co/api/v2/location-area/"
 	if cfg.nextLocUrl != nil {
 		url = *cfg.nextLocUrl
 	}
-	areaRes, err := pokeapi.GetAreas(url, cfg.cache)
+	areaRes, err := pokeapi.GetAreas(url, cfg.cachePtr)
 	if err != nil {
 		fmt.Printf("Error GetAreas in commandMap: %v\n", err)
 		return err
