@@ -1,4 +1,5 @@
 package main
+
 import "fmt"
 import "strings"
 import "sort"
@@ -10,7 +11,7 @@ func commandHelp(cfg *config) error {
 	commandNames := []string{}
 	for name := range cfg.commands {
 		commandNames = append(commandNames, name)
-		}
+	}
 	sort.Strings(commandNames)
 	for _, commandName := range commandNames {
 		fmt.Printf("%s - %s\n", commandName, cfg.commands[commandName].description)

@@ -1,4 +1,5 @@
-package pokeapi
+package pokecache
+
 import "sync"
 import "time"
 
@@ -25,6 +26,7 @@ func reapLoop(interval time.Duration, cache *Cache) {
 	ticker := time.NewTicker(interval)
 	defer ticker.Stop()
 		for range ticker.C {
+			print(ticker.C)
 			cache.mu.Lock()
 			for key, val := range cache.data {
 				if interval < time.Since(val.createdAt) {

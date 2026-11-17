@@ -1,8 +1,9 @@
-package pokeapi
+package pokecache
+
 import "testing"
 import "bytes"
-import "fmt"
 import "time"
+
 
 func TestCache(t *testing.T) {
 	t.Run("add and get existing key", func(t *testing.T) {
@@ -10,7 +11,6 @@ func TestCache(t *testing.T) {
 		c.AddCache("banana", []byte{1, 2, 3})
 		val, ok := c.GetCache("banana")
 		expected := []byte{1, 2, 3}
-		fmt.Printf("teesssst %v \n",c.data["banana"].val)
 		if !ok || !bytes.Equal(expected, val) {
 			t.Errorf("Expected: %v Got: %v", expected, val)
 		}

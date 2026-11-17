@@ -1,6 +1,8 @@
 package main
+
 import "github.com/PotatoesInHD/pokedex/internal/pokeapi"
 import "fmt"
+
 
 func commandMap(cfg *config) error {
 	url := ""

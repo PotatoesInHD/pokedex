@@ -1,6 +1,8 @@
 package main
+
 import "fmt"
 import "os"
+
 
 func commandExit(cfg *config) error {
 	fmt.Println("Closing the Pokedex... Goodbye!")

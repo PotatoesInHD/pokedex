@@ -18,12 +18,12 @@ type AreaResponse struct {
 	} `json:"results"`
 }
 
+
 func GetAreas(url string) (AreaResponse, error) {
 	if url == "" {
 		url = "https://pokeapi.co/api/v2/location-area/"
 	}
 	res, err := http.Get(url)
-
 	if err != nil {
 		log.Fatalf("Error during Get: %v", err)
 	}

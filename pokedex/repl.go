@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"bufio"
 	"fmt"
@@ -20,6 +19,7 @@ type config struct {
 	nextLocUrl *string
 	prevLocUrl *string
 }
+
 
 func startRepl(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
