@@ -9,7 +9,7 @@ func commandMap(cfg *config) error {
 	if cfg.nextLocUrl != nil {
 		url = *cfg.nextLocUrl
 	}
-	areaRes, err := pokeapi.GetAreas(url)
+	areaRes, err := pokeapi.GetAreas(url, cfg.cache)
 	if err != nil {
 		fmt.Printf("Error GetAreas in commandMap: %v\n", err)
 		return err

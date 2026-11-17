@@ -9,7 +9,7 @@ func commandMapb(cfg *config) error {
 		fmt.Println("You're on the first page")
 		return nil
 	}
-	areaRes, err := pokeapi.GetAreas(*cfg.prevLocUrl)
+	areaRes, err := pokeapi.GetAreas(*cfg.prevLocUrl, cfg.cache)
 	if err != nil {
 		fmt.Printf("Error after GetAreas in commandMapb: %v\n", err)
 		return err

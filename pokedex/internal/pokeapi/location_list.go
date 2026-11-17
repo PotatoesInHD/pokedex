@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"github.com/PotatoesInHD/pokedex/internal/pokecache"
 )
 
 
@@ -19,10 +20,19 @@ type AreaResponse struct {
 }
 
 
-func GetAreas(url string) (AreaResponse, error) {
+func GetAreas(url string, cache *pokecache.Cache) (AreaResponse, error) {
 	if url == "" {
 		url = "https://pokeapi.co/api/v2/location-area/"
 	}
+	//checks to see if cache exists. if so unmarshal if not do a new http request
+	if bodyCache, ok := cache.GetCache(url); ok {
+		areas := AreaResponse{}
+		if err := json.Unmarshal(bodyCache, &areas); err != nil {
+		    return AreaResponse{}, err
+		}
+		return areas, nil
+	}
+
 	res, err := http.Get(url)
 	if err != nil {
 		log.Fatalf("Error during Get: %v", err)
@@ -37,6 +47,7 @@ func GetAreas(url string) (AreaResponse, error) {
 		log.Fatalf("io.ReadAll resonse error: %v", err)
 	}
 
+	cache.AddCache(url, body)
 	areas := AreaResponse{}
 	if err = json.Unmarshal(body, &areas); err != nil {
 	    return AreaResponse{}, err

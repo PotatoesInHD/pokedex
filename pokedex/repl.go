@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"github.com/PotatoesInHD/pokedex/internal/pokecache"
 )
 
 
@@ -18,6 +19,7 @@ type config struct {
 	commands map[string]cliCommand
 	nextLocUrl *string
 	prevLocUrl *string
+	cache 		*pokecache.Cache
 }
 
 
