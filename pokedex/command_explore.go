@@ -6,7 +6,7 @@ import "github.com/PotatoesInHD/pokedex/internal/pokeapi"
 
 func commandExplore(cfg *config, parameter string) error {
 	if parameter == "" {
-		fmt.Println("Destination can't be empty. Type: 'help' for help command")
+		fmt.Println("explore <destination> can't be empty")
 		return nil
 	}
 

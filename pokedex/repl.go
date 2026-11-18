@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 	"github.com/PotatoesInHD/pokedex/internal/pokecache"
+	"github.com/PotatoesInHD/pokedex/internal/pokeapi"
 )
 
 
@@ -21,6 +22,8 @@ type config struct {
 	prevLocUrl		*string
 	areaCachePtr 	*pokecache.Cache
 	pokemonCachePtr *pokecache.Cache
+	catchCachePtr 	*pokecache.Cache
+	collectedPokes  map[string]pokeapi.CatchResponse
 }
 
 
@@ -54,7 +57,7 @@ func getCommands() map[string]cliCommand {
 	commands := map[string]cliCommand{
 		"exit": {
 			name: "exit",
-			description: "Exit the Pokedex",
+			description: "Exit the Pokedex. Ctrl+C will also exit the Pokedex",
 			callback: commandExit,
 		},
 		"help": {
@@ -73,9 +76,14 @@ func getCommands() map[string]cliCommand {
 			callback: commandMapb,
 		},
 		"explore": {
-			name: "explore",
+			name: "explore <destination>",
 			description: "Displays the names of all Pokemon in the area",
 			callback: commandExplore,
+		},
+		"catch": {
+			name: "catch <pokemon>",
+			description: "Attempts to catch pokemon",
+			callback: commandCatch,
 		},
 	}
 	return commands

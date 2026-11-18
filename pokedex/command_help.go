@@ -14,7 +14,7 @@ func commandHelp(cfg *config, parameter string) error {
 	}
 	sort.Strings(commandNames)
 	for _, commandName := range commandNames {
-		fmt.Printf("%s - %s\n", commandName, cfg.commands[commandName].description)
+		fmt.Printf("%s - %s\n", cfg.commands[commandName].name, cfg.commands[commandName].description)
 	}
 	fmt.Println(strings.Repeat("-", 30))
 	return nil
