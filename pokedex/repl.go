@@ -12,14 +12,15 @@ import (
 type cliCommand struct {
 	name 		string
 	description string
-	callback 	func(cfg *config) error
+	callback 	func(cfg *config, parameter string) error
 }
 
 type config struct {
-	commands 	map[string]cliCommand
-	nextLocUrl	*string
-	prevLocUrl	*string
-	cachePtr 	*pokecache.Cache
+	commands 		map[string]cliCommand
+	nextLocUrl		*string
+	prevLocUrl		*string
+	areaCachePtr 	*pokecache.Cache
+	pokemonCachePtr *pokecache.Cache
 }
 
 
@@ -32,9 +33,13 @@ func startRepl(cfg *config) {
 		fmt.Printf("Pokedex > ")
 		scanner.Scan()
 		result := cleanInput(scanner.Text())
+		var parameter string
+		if len(result) >= 2 {
+			 parameter = result[1]
+		}
 		if len(result) != 0 {
 			if command, ok := cfg.commands[result[0]]; ok {
-				if err := command.callback(cfg); err != nil {
+				if err := command.callback(cfg, parameter); err != nil {
 					fmt.Printf("Error in startRepl: %v", err)
 				}
 			} else {
@@ -66,6 +71,11 @@ func getCommands() map[string]cliCommand {
 			name: "mapb",
 			description: "Displays previous 20 locations",
 			callback: commandMapb,
+		},
+		"explore": {
+			name: "explore",
+			description: "Displays the names of all Pokemon in the area",
+			callback: commandExplore,
 		},
 	}
 	return commands

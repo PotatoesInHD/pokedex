@@ -4,12 +4,12 @@ import "github.com/PotatoesInHD/pokedex/internal/pokeapi"
 import "fmt"
 
 
-func commandMap(cfg *config) error {
+func commandMap(cfg *config, parameter string) error {
 	url := "https://pokeapi.co/api/v2/location-area/"
 	if cfg.nextLocUrl != nil {
 		url = *cfg.nextLocUrl
 	}
-	areaRes, err := pokeapi.GetAreas(url, cfg.cachePtr)
+	areaRes, err := pokeapi.GetAreas(url, cfg.areaCachePtr)
 	if err != nil {
 		fmt.Printf("Error GetAreas in commandMap: %v\n", err)
 		return err

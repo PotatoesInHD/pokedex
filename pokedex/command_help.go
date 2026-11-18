@@ -4,7 +4,7 @@ import "fmt"
 import "strings"
 import "sort"
 
-func commandHelp(cfg *config) error {
+func commandHelp(cfg *config, parameter string) error {
 	fmt.Println(strings.Repeat("-", 30))
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Print("Usage:\n\n")

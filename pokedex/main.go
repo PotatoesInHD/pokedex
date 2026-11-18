@@ -6,8 +6,9 @@ import (
 )
 
 func main() {
-	cache := pokecache.NewCache(5 * time.Minute)
+	areaCache := pokecache.NewCache(5 * time.Minute)
+	pokemonCache := pokecache.NewCache(5 * time.Minute)
 	commands := getCommands()
-	cfg := &config{commands: commands, cachePtr: cache}
+	cfg := &config{commands: commands, areaCachePtr: areaCache, pokemonCachePtr: pokemonCache}
 	startRepl(cfg)
 }
