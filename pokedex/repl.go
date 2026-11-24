@@ -101,7 +101,6 @@ func getCommands() map[string]cliCommand {
 
 
 func cleanInput(text string) []string {
-	cleanSlice := []string{}
-	cleanSlice = strings.Fields(strings.ToLower(text))
+	cleanSlice := strings.Fields(strings.ToLower(text))
 	return  cleanSlice
 }
